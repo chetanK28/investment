@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border: 1px solid #d4efdf;
+            border-radius: 4px;
+        }
+
+        .result p {
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Investment Calculator</h2>
+        <div class="form-group">
+            <label for="price">Entry Price:</label>
+            <input type="number" id="price" placeholder="Enter price">
+        </div>
+        <div class="form-group">
+            <label for="capital">Capital Invested:</label>
+            <input type="number" id="capital" placeholder="Enter capital">
+        </div>
+        <button class="btn" onclick="calculateLotSize()">Calculate</button>
+        <div class="result" id="result" style="display:none;">
+            <p id="lotSizeValue"></p>
+            <p id="lotSize"></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateLotSize() {
+            const price = parseFloat(document.getElementById('price').value);
+            const capital = parseFloat(document.getElementById('capital').value);
+
+            if (!price || price <= 0) {
+                alert('Please enter a valid price.');
+                return;
+            }
+
+            const lotSizeValue = price * 75;
+            const lotSize = (capital / lotSizeValue).toFixed(2);
+
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('lotSizeValue').textContent = `Lot Size Value: ₹${lotSizeValue}`;
+            document.getElementById('lotSize').textContent = `Lot Size: ${lotSize}`;
+        }
+    </script>
+</body>
+</html>
